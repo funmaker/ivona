@@ -3,3 +3,5 @@
 /prod
 /build
 /node_modules
+/tmp
+/cache

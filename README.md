@@ -1,15 +1,11 @@
-# Webapp Boilerplate
+# Ivona
 
-Basic boilerplate for isomorphic React web apps. Including:
-- Node.js
-- Typescript
-- Semantic UI (+theming)
-- React
-- Webpack
-- Sass
-- Babel
-- Handlebars
-- Universal Hot Reload
+Janusz V2 text to speech service.
+
+## Disclaimer
+
+- Files in `vox/Black Mesa Announcement` belong to Valve.
+- Files in `vox/Space Station 13` belong to SS13 creators.
 
 ## Usage
 

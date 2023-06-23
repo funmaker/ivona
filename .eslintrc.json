@@ -6,8 +6,7 @@
     "node": true
   },
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended"
+    "eslint:recommended"
   ],
   "globals": {
     "__": false
@@ -22,10 +21,8 @@
     "sourceType": "module"
   },
   "plugins": [
-    "react",
     "import",
     "@typescript-eslint",
-    "react-hooks",
     "indent-empty-lines"
   ],
   "rules": {
@@ -280,65 +277,6 @@
       "consistent-as-needed"
     ],
     "quotes": "off",
-    "react/jsx-boolean-value": "warn",
-    "react/jsx-closing-bracket-location": [
-      "warn",
-      "after-props"
-    ],
-    "react/jsx-closing-tag-location": "warn",
-    "react/jsx-curly-brace-presence": "warn",
-    "react/jsx-curly-spacing": "warn",
-    "react/jsx-equals-spacing": "warn",
-    "react/jsx-filename-extension": [
-      "warn",
-      {
-        "extensions": [
-          ".jsx",
-          ".tsx"
-        ]
-      }
-    ],
-    "react/jsx-indent": [
-      "warn",
-      2
-    ],
-    "react/jsx-indent-props": [
-      "warn",
-      "first"
-    ],
-    "react/jsx-key": "warn",
-    "react/jsx-pascal-case": "warn",
-    "react/jsx-props-no-multi-spaces": "warn",
-    "react/jsx-tag-spacing": "warn",
-    "react/no-access-state-in-setstate": "warn",
-    "react/no-this-in-sfc": "error",
-    "react/no-typos": "warn",
-    "react/prop-types": [
-      "error",
-      {
-        "skipUndeclared": true
-      }
-    ],
-    "react/sort-comp": [
-      "warn",
-      {
-        "order": [
-          "type-annotations",
-          "static-methods",
-          "lifecycle",
-          "everything-else",
-          "render"
-        ]
-      }
-    ],
-    "react/void-dom-elements-no-children": "warn",
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": [
-      "warn",
-      {
-        "additionalHooks": "(useGameState)"
-      }
-    ],
     "rest-spread-spacing": "warn",
     "semi": "off",
     "semi-spacing": "warn",
@@ -360,10 +298,5 @@
     "use-isnan": "warn",
     "valid-typeof": "warn",
     "yield-star-spacing": "warn"
-  },
-  "settings": {
-    "react": {
-      "version": "16.2"
-    }
   }
 }

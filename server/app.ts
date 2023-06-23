@@ -1,29 +1,19 @@
 import * as http from 'http';
 import express from 'express';
 import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import compression from 'compression';
 import morgan from 'morgan';
 import { router } from "./routes";
-import { reactMiddleware } from "./helpers/reactHelper";
 import HTTPError from "./helpers/HTTPError";
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cookieParser());
-app.use(compression());
-app.use('/static', express.static('static'));
+app.use('/', express.static('static'));
+
 if(process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
-  app.use(require('./helpers/webpackHelper').mount());
-} else {
-  app.use('/client.js', express.static('client.js'));
-  app.use('/style.css', express.static('style.css'));
 }
-
-app.use(reactMiddleware);
 
 app.use('/', router);
 
@@ -40,7 +30,7 @@ app.use((err: Partial<HTTPError>, req: express.Request, res: express.Response, _
     message: err.publicMessage || http.STATUS_CODES[code],
     stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
   };
-  res.status(code).react(result);
+  res.status(code).json(result);
 });
 
 export default app;

@@ -1,16 +1,31 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<title>Boilerplate</title>
-		<meta charset="utf-8">
-		{{#if production}}
-			<link rel="stylesheet" href="/style.css"/>
-		{{/if}}
-	</head>
-	<body>
-		<div id="root">{{{reactContent}}}</div>
-		<script id="initialData" type="application/json">{{{initialData}}}</script>
+<head>
+    <title>Ivona Service</title>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+<h1>Ivona Service<sup>V2</sup></h1>
 
-		<script type="text/javascript" src="/client.js"></script>
-	</body>
+<div class="background">
+    <form id="form">
+        <textarea placeholder="Type your message here..." name="text">{{{text}}}</textarea>
+        <div class="languageWrap">
+            <select name="voice">
+                <option value="">Detect Language</option>
+                {{#each voices}}
+                    <option value="{{{name}}}" {{#if selected}}selected="selected"{{/if}}>[{{{provider}}}] ({{{language}}}) {{{name}}}</option>
+                {{/each}}
+            </select>
+            <button>Synthesize</button>
+        </div>
+    </form>
+</div>
+
+<audio id="audio" controls autoplay src="{{{audioSrc}}}"></audio>
+
+<script type="text/javascript" src="/client.js"></script>
+</body>
 </html>

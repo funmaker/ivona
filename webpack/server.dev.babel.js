@@ -16,9 +16,6 @@ const BABEL_OPTIONS = {
         node: "current",
       },
     }],
-    ["@babel/preset-react", {
-      development: true,
-    }],
   ],
   plugins: [
     "@babel/plugin-proposal-object-rest-spread",
@@ -41,11 +38,8 @@ export default {
 		'./server.ts',
   ],
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    extensions: ['.js', '.ts'],
     modules: [root, 'node_modules'],
-    alias: {
-      "react-dom": '@hot-loader/react-dom',
-    },
   },
   output: {
     path: path.join(root, 'build'),
@@ -87,9 +81,6 @@ export default {
       }, {
         test: /\.handlebars$/,
         loader: 'handlebars-loader',
-      }, {
-        test: /\.css$|\.scss$|\.less$/,
-        use: 'ignore-loader',
       },
     ],
   },
