@@ -6,6 +6,7 @@ try {
 } catch(e) {
   configs = {
     port: 3939,
+    host: "0.0.0.0",
   };
 }
 
