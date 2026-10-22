@@ -13,7 +13,7 @@ set -euo pipefail
 
 # Original: https://www.a-quest.com/archive/package/aqtk10_lnx_110.zip
 AQUESTALK_URL="${AQUESTALK_URL:-https://puu.sh/KUvEj/d76abe70f2.zip}"
-#AQUESTALK_SHA256="989e0c363f865923800e0e0b9d905d6e4a5164a6d0e142f73368055228bf979b"
+AQUESTALK_SHA256="989e0c363f865923800e0e0b9d905d6e4a5164a6d0e142f73368055228bf979b"
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 INSTALL="$(realpath -m "${AQUESTALK_DIR:-$DIR/install}")"
@@ -34,7 +34,7 @@ else
 	echo "Downloading AquesTalk10 from $AQUESTALK_URL..."
 	ZIP="$TEMP/aqtk10_lnx_110.zip"
 	curl -fL --retry 3 -o "$ZIP" "$AQUESTALK_URL"
-#	echo "$AQUESTALK_SHA256  $ZIP" | sha256sum -c --quiet - || { echo "Checksum mismatch for $AQUESTALK_URL" >&2; exit 1; }
+	echo "$AQUESTALK_SHA256  $ZIP" | sha256sum -c --quiet - || { echo "Checksum mismatch for $AQUESTALK_URL" >&2; exit 1; }
 fi
 
 if [[ -z "${AQUESTALK_BIN:-}" ]]; then
