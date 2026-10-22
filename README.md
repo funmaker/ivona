@@ -1,3 +1,5 @@
+> ⚠️ AI Slop warning ⚠️
+
 # Ivona
 
 Janusz V2 text to speech service.
