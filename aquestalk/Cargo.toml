@@ -1,0 +1,9 @@
+[package]
+name = "aquestalk"
+version = "1.0.0"
+edition = "2021"
+description = "Minimal AquesTalk10 command line synthesizer"
+
+[profile.release]
+opt-level = "s"
+lto = true

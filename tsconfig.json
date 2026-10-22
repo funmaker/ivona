@@ -26,5 +26,11 @@
     "resolveJsonModule": true,
     "experimentalDecorators": true,
     "downlevelIteration": true
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "sapi4",
+    "aquestalk"
+  ]
 }

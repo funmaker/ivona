@@ -1,0 +1,12 @@
+# SAPI 4 engines are 32-bit, so the helper must be too. The binary is no_std and imports
+# everything through raw-dylib, so it links with the bundled rust-lld and needs no Windows SDK.
+[build]
+target = "i686-pc-windows-msvc"
+
+[target.i686-pc-windows-msvc]
+linker = "rust-lld"
+rustflags = [
+	"-C", "link-arg=/NODEFAULTLIB",
+	"-C", "link-arg=/ENTRY:mainCRTStartup",
+	"-C", "link-arg=/SUBSYSTEM:CONSOLE",
+]

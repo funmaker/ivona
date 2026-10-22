@@ -1,6 +1,11 @@
-.idea
-.git
-.gitignore
-dist
-prod
-node_modules
+/.idea
+/node_modules
+/dist
+/prod
+/build
+/tmp
+/cache
+/sapi4/prefix
+/sapi4/target
+/aquestalk/install
+/aquestalk/target

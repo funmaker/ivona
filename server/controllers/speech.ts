@@ -6,6 +6,8 @@ import HTTPError from "../helpers/HTTPError";
 import Provider from "../providers/base";
 import Sapi5 from "../providers/sapi5";
 import Vox from "../providers/vox";
+import Bonzi from "../providers/bonzi";
+import AquesTalk from "../providers/aquestalk";
 import chalk from "chalk";
 
 fs.mkdirSync("./tmp", { recursive: true });
@@ -19,6 +21,8 @@ langDetector.setLanguageType("iso2");
 export const providers = [
   process.platform === "win32" && new Sapi5(),
   new Vox(),
+  process.platform !== "win32" && new Bonzi(),
+  process.platform === "linux" && new AquesTalk(),
 ].filter(x => !!x) as Provider[];
 
 providers.forEach(async provider => {

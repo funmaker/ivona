@@ -1,0 +1,13 @@
+[package]
+name = "sapi4"
+version = "1.0.0"
+edition = "2021"
+description = "Minimal SAPI 4 command line synthesizer, meant to be run under Wine"
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
+opt-level = "s"
+lto = true

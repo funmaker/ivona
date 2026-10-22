@@ -5,3 +5,7 @@
 /node_modules
 /tmp
 /cache
+/sapi4/prefix
+/sapi4/target
+/aquestalk/install
+/aquestalk/target
