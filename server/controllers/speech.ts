@@ -20,9 +20,9 @@ langDetector.setLanguageType("iso2");
 
 export const providers = [
   process.platform === "win32" && new Sapi5(),
-  new Vox(),
   process.platform !== "win32" && new Bonzi(),
   process.platform === "linux" && new AquesTalk(),
+  new Vox(),
 ].filter(x => !!x) as Provider[];
 
 providers.forEach(async provider => {
@@ -66,7 +66,7 @@ export async function synthesise(text: string, { voice, language, provider }: Sy
       }
     }
     
-    if(!language || language === "pl") voice = "Jan";
+    // if(!language || language === "pl") voice = "Jan";
   }
   
   let foundVoice = voices.find(fv => (!voice    || fv.name.toLowerCase().includes(voice.toLowerCase()))
