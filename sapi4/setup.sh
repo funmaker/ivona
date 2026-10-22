@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Creates a Wine prefix with the SAPI 4 runtime and L&H TruVoice voices installed,
+# Creates a Wine prefix with the SAPI 4 runtime, L&H TruVoice and Microsoft voices installed,
 # and builds the sapi4.exe helper into it (C:\sapi4.exe).
 #
 # Usage: sapi4/setup.sh [path to WSAPI4 archive]
@@ -16,6 +16,7 @@ WSAPI4_URL="${WSAPI4_URL:-https://github.com/LouisGameDev/Microsoft-Sam-Mary-Mik
 declare -A WSAPI4_SHA256=(
 	[spchapi.exe]=8955ee03217bc2539e2f80e58f51d30aa97e7512d96592f098133c8036e363dd
 	[tv_enua.exe]=709936902951fb684d0a03a561fb7fd41c5e6f81ecd60d326809db66eb659331
+	[msttsl.exe]=c87f9a489e53d250cb4ed5574af243c35db1a859e2a266e2d9d0d3b241513d5e
 )
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -57,10 +58,14 @@ echo "Installing SAPI 4 runtime..."
 wine "$ARCHIVE/spchapi.exe" /Q:A /R:N || true
 echo "Installing TruVoice voices..."
 wine "$ARCHIVE/tv_enua.exe" /Q:A /R:N || true
+echo "Installing Microsoft voices..."
+wine "$ARCHIVE/msttsl.exe" /Q:A /R:N || true
 
 cp "$SAPI4_EXE" "$WINEPREFIX/drive_c/sapi4.exe"
 wineserver -w
 
 echo "Installed voices:"
-wine 'C:\sapi4.exe' list 2>/dev/null | tee /dev/stderr | grep -q "TruVoice" || { echo "TruVoice voices were not installed" >&2; exit 1; }
+VOICES="$(wine 'C:\sapi4.exe' list 2>/dev/null | tee /dev/stderr)"
+grep -q "TruVoice" <<<"$VOICES" || { echo "TruVoice voices were not installed" >&2; exit 1; }
+grep -q "^Sam"$'\t' <<<"$VOICES" || { echo "Microsoft voices were not installed" >&2; exit 1; }
 echo "Done."

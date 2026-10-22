@@ -1,4 +1,5 @@
 > ⚠️ AI Slop warning ⚠️
+> AI has been used for parts of this project
 
 # Ivona
 
@@ -9,9 +10,9 @@ Janusz V2 text to speech service.
 - Files in `vox/Black Mesa Announcement` belong to Valve.
 - Files in `vox/Space Station 13` belong to SS13 creators.
 
-## BonziBuddy voice (SAPI 4, Linux)
+## BonziBuddy and Microsoft Sam voices (SAPI 4, Linux)
 
-The `Bonzi` provider runs the L&H TruVoice SAPI 4 engine under Wine through a small
+The `Sapi4` provider runs the L&H TruVoice and Microsoft SAPI 4 engines under Wine through a small
 Rust helper (`sapi4/`). To set it up you need `wine` and `cargo` with the 32-bit Windows target:
 
 ```bash
@@ -19,7 +20,7 @@ rustup target add i686-pc-windows-msvc
 sapi4/setup.sh [path to WSAPI4 archive]
 ```
 
-This downloads the SAPI 4 runtime and TruVoice installers from the
+This downloads the SAPI 4 runtime, TruVoice and Microsoft voice installers from the
 [WSAPI4 archive](https://github.com/LouisGameDev/Microsoft-Sam-Mary-Mike-TruVoice-WSAPI4)
 (or uses a local copy), creates a Wine prefix in `sapi4/prefix` with them installed,
 and installs the helper into it. Set `SAPI4_PREFIX` to use a different location

@@ -6,8 +6,9 @@ import HTTPError from "../helpers/HTTPError";
 import Provider from "../providers/base";
 import Sapi5 from "../providers/sapi5";
 import Vox from "../providers/vox";
-import Bonzi from "../providers/bonzi";
+import Sapi4 from "../providers/sapi4";
 import AquesTalk from "../providers/aquestalk";
+import { hasJapanese } from "../helpers/japanese";
 import chalk from "chalk";
 
 fs.mkdirSync("./tmp", { recursive: true });
@@ -20,7 +21,7 @@ langDetector.setLanguageType("iso2");
 
 export const providers = [
   process.platform === "win32" && new Sapi5(),
-  process.platform !== "win32" && new Bonzi(),
+  process.platform !== "win32" && new Sapi4(),
   process.platform === "linux" && new AquesTalk(),
   new Vox(),
 ].filter(x => !!x) as Provider[];
@@ -59,14 +60,17 @@ export async function synthesise(text: string, { voice, language, provider }: Sy
   if(language && !voices.find(v => v.language.toLowerCase().startsWith(language!.toLowerCase()))) throw new HTTPError(400, `Language ${language} is not supported.`);
   
   if(!voice && !provider && !language) {
-    for(const [detected] of langDetector.detect(text)) {
+    // languagedetect doesn't know any CJK languages
+    const detections = hasJapanese(text) ? [["ja"]] : langDetector.detect(text);
+    
+    for(const [detected] of detections) {
       if(voices.some(voice => voice.language.toLowerCase().startsWith(detected))) {
         language = detected;
         break;
       }
     }
     
-    // if(!language || language === "pl") voice = "Jan";
+    if(!language) voice = "Microsoft Sam";
   }
   
   let foundVoice = voices.find(fv => (!voice    || fv.name.toLowerCase().includes(voice.toLowerCase()))

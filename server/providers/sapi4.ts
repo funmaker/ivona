@@ -27,10 +27,16 @@ const VOICES: Sapi4Voice[] = [
     pitch: 140,
     speed: 157,
   },
+  {
+    name: "Microsoft Sam",
+    mode: "Sam",
+    pitch: 100,
+    speed: 150,
+  },
 ];
 
 function log(...params: any[]) {
-  console.log(chalk.bold("[") + chalk.bold.magenta("Bonzi") + chalk.bold("]"), ...params);
+  console.log(chalk.bold("[") + chalk.bold.magenta("Sapi4") + chalk.bold("]"), ...params);
 }
 
 const wineEnv = () => ({
@@ -111,8 +117,8 @@ async function runHelper(args: string[], input = "", waitForStdio = false): Prom
   });
 }
 
-export default class Bonzi extends Provider {
-  name = "Bonzi";
+export default class Sapi4 extends Provider {
+  name = "Sapi4";
   
   async init() {
     if(!fs.existsSync(path.join(PREFIX, "drive_c", "sapi4.exe"))) {
